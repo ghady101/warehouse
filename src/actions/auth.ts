@@ -31,7 +31,7 @@ export async function loginAction(_prev: ActionState, formData: FormData): Promi
 	}
 
 	try {
-		await signIn('credentials', { ...parsed.data, redirectTo: '/' });
+		await signIn('credentials', { ...parsed.data, redirectTo: '/dashboard' });
 	} catch (e) {
 		if (e instanceof AuthError) return { error: 'Invalid email or password.' };
 		throw e;
@@ -57,7 +57,7 @@ export async function signupAction(_prev: ActionState, formData: FormData): Prom
 		await signIn('credentials', {
 			email: parsed.data.email,
 			password: parsed.data.password,
-			redirectTo: '/',
+			redirectTo: '/dashboard',
 		});
 	} catch (e) {
 		if (e instanceof AuthError) return { error: 'Account created but sign-in failed. Please log in.' };
